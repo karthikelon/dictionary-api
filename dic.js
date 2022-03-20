@@ -1,5 +1,5 @@
 console.log("bankai");
-let fetchBtn=document.getElementById('fetchbtn');
+// let fetchBtn=document.getElementById('fetchbtn');
 // iam trying to push this code using cmd
 // fetchBtn.addEventListener('click', buttonClickHandler);
 
@@ -24,12 +24,14 @@ let fetchBtn=document.getElementById('fetchbtn');
 // }
 let popbtn=document.getElementById('popbtn');
 popbtn.addEventListener('click', pophandler);
-var url='https://api.dictionaryapi.dev/api/v2/entries/en/'
-var word = window.prompt("Enter a unknown term: ");
-var result=url+word;
-console.log(result);
+
 function pophandler(){
     console.log('you have touched pop handler');
+    var url='https://api.dictionaryapi.dev/api/v2/entries/en/'
+var word = document.getElementById("fname").value;
+console.log(word);
+var result=url+word;
+console.log(result);
         const xhr= new XMLHttpRequest();
         console.log(url);
         xhr.open('GET',result,true);
@@ -44,6 +46,15 @@ function pophandler(){
                     // str+= `<li>${obj1[phonetics]}</li>`
                 }
                 list.innerHTML=str;
+                let obj2=JSON.parse(this.responseText);
+                console.log(obj2);
+                let list1=document.getElementById('list1');
+                str1="";
+                for(key in obj2){
+                    str1+= `<li>${obj1[key]["meanings"]["0"]["definitions"]["1"]["definition"]}</li>`
+                    // str+= `<li>${obj1[phonetics]}</li>`
+                }
+                list1.innerHTML=str1;
             }
             else{
                 console.log("some error occured")
